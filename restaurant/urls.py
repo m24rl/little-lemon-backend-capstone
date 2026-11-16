@@ -1,12 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import home, MenuItemsView, SingleMenuItemView, BookingViewSet
+from rest_framework.authtoken.views import obtain_auth_token
+from .views import home, MenuViewSet, BookingViewSet
 
 router = DefaultRouter()
-router.register('tables',BookingViewSet,basename='booking')
+router.register('menu',MenuViewSet,basename='menu')
+router.register('booking/tables',BookingViewSet,basename='booking')
 urlpatterns = [
     path('',home,name='restaurant-home'),
-    path('menu/',MenuItemsView.as_view(),name='menu-list'),
-    path('menu/<int:pk>/',SingleMenuItemView.as_view(),name='menu-detail'),
-    path('booking/',include(router.urls)),
+    path('api-token-auth/',obtain_auth_token,name='restaurant-api-token-auth'),
+    path('',include(router.urls)),
 ]

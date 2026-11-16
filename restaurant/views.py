@@ -20,6 +20,13 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MenuSerializer
     permission_classes = [IsAdminOrReadOnly]
 
+class MenuViewSet(viewsets.ModelViewSet):
+    queryset = Menu.objects.all()
+    serializer_class = MenuSerializer
+    permission_classes = [IsAdminOrReadOnly]
+    search_fields = ['title']
+    ordering_fields = ['title','price','inventory']
+
 class BookingViewSet(viewsets.ModelViewSet):
     serializer_class = BookingSerializer
     permission_classes = [IsAuthenticated]
