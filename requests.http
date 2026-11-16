@@ -1,0 +1,43 @@
+### Public menu (also usable as an Insomnia GET request)
+GET http://127.0.0.1:8000/restaurant/menu/?ordering=price
+
+### Register using YOUR OWN local test credentials
+POST http://127.0.0.1:8000/auth/users/
+Content-Type: application/json
+
+{"username":"reviewer","email":"reviewer@example.test","password":"REPLACE_WITH_LOCAL_STRONG_PASSWORD","re_password":"REPLACE_WITH_LOCAL_STRONG_PASSWORD"}
+
+### Obtain a token, then copy auth_token to protected requests
+POST http://127.0.0.1:8000/auth/token/login/
+Content-Type: application/json
+
+{"username":"reviewer","password":"REPLACE_WITH_LOCAL_STRONG_PASSWORD"}
+
+### Create a reservation
+POST http://127.0.0.1:8000/restaurant/booking/tables/
+Authorization: Token REPLACE_WITH_LOCAL_TOKEN
+Content-Type: application/json
+
+{"name":"Ada","no_of_guests":2,"booking_date":"2030-01-01T18:00:00Z"}
+
+### List your reservations
+GET http://127.0.0.1:8000/restaurant/booking/tables/
+Authorization: Token REPLACE_WITH_LOCAL_TOKEN
+
+### Update your own reservation (replace id with response id)
+PATCH http://127.0.0.1:8000/restaurant/booking/tables/1/
+Authorization: Token REPLACE_WITH_LOCAL_TOKEN
+Content-Type: application/json
+
+{"no_of_guests":4}
+
+### Delete your own reservation
+DELETE http://127.0.0.1:8000/restaurant/booking/tables/1/
+Authorization: Token REPLACE_WITH_LOCAL_TOKEN
+
+### Create a dish with a staff token
+POST http://127.0.0.1:8000/restaurant/menu/
+Authorization: Token REPLACE_WITH_STAFF_TOKEN
+Content-Type: application/json
+
+{"title":"Lemon pasta","price":"12.50","inventory":20}

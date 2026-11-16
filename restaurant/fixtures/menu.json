@@ -1,0 +1,5 @@
+[
+ {"model":"restaurant.menu","pk":1,"fields":{"title":"Greek Salad","price":"9.50","inventory":20}},
+ {"model":"restaurant.menu","pk":2,"fields":{"title":"Lemon Pasta","price":"12.50","inventory":20}},
+ {"model":"restaurant.menu","pk":3,"fields":{"title":"Lemon Dessert","price":"6.50","inventory":15}}
+]
